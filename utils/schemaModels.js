@@ -5,7 +5,8 @@ const Schema = mongoose.Schema
 const WhereAboutSchema = new Schema({
     name: String,        
     image: String,    
-    where: String
+    where: String,
+    email: String
 })
 
 const UserSchema = new Schema({

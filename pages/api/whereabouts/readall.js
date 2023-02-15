@@ -1,7 +1,8 @@
 import connectDB from "../../../utils/database"
 import { WhereAboutModel } from "../../../utils/schemaModels"
+import auth from "../../../utils/auth"
 
-const getAllItems = async(req, res) => {
+const getAllWhereAbouts = async(req, res) => {
     try{
         await connectDB()
         const allWhereAbouts = await WhereAboutModel.find()
@@ -11,4 +12,4 @@ const getAllItems = async(req, res) => {
     }
 }
 
-export default getAllItems
+export default auth(getAllWhereAbouts)

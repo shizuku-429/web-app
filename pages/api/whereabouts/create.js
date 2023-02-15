@@ -1,8 +1,8 @@
-//import auth from "../../../utils/auth"
+import auth from "../../../utils/auth"
 import connectDB from "../../../utils/database"
 import { WhereAboutModel } from "../../../utils/schemaModels"
 
-const createItem = async(req, res) => {
+const createWhereAbout = async(req, res) => {
     try{
         await connectDB()
         console.log(req.body)
@@ -13,4 +13,4 @@ const createItem = async(req, res) => {
     }
 }
   
-export default createItem//auth(createItem)
+export default auth(createWhereAbout)

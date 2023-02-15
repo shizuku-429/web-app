@@ -1,7 +1,12 @@
+//
+
+/* 1つの情報のみ取得 */
+
 import connectDB from "../../../utils/database"  
 import { WhereAboutModel } from "../../../utils/schemaModels"
+import auth from "../../../utils/auth"
 
-const getSingleItem = async(req, res) => {  
+const getSingleWhereAbout = async(req, res) => {  
     try{
         await connectDB()
         const singleWhereAbout = await WhereAboutModel.findById(req.query.id) 
@@ -11,4 +16,4 @@ const getSingleItem = async(req, res) => {
     }
 }
 
-export default getSingleItem
+export default auth(getSingleWhereAbout)

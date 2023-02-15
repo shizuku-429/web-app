@@ -1,33 +1,40 @@
 //pages/api/user/login.js
 
-/* ユーザーのログイン機能 */
+/* ユーザーログイン機能 */
 
+import jwt from "jsonwebtoken"  //ログイン保持にトークンを使用
 import connectDB from "../../../utils/database"
 import { UserModel } from "../../../utils/schemaModels"
 
+const secret_key = "ownwhereabout"  //トークン発行時のシークレットキー
+
 const loginUser = async(req, res) => {
-
     try{
-        await connectDB //DB接続
-        const savedUserData = await UserModel.findOne({email:req.body.email})   //入力emailからDBを検索
-
+        await connectDB()
+        const savedUserData = await UserModel.findOne({email: req.body.email})
         if(savedUserData){
+            // ユーザーデータが存在する場合の処理
+            if(req.body.password === savedUserData.password){
+                // パスワードが正しい場合の処理
 
-            if(savedUserData.password == req.body.password){
-                return res.status(200).json({message: "ログイン成功"})
+                const payload = {
+                    email: req.body.email,
+                }
+
+                const token = jwt.sign(payload, secret_key, {expiresIn: "23h"})
+                console.log(token)
+                return res.status(200).json({message: "ログイン成功", token: token})
             }else{
-                return res.status(400).json({message: "ログイン失敗：パスワードが間違っています"})
+                // パスワードが間違っている場合の処理
+                return res.status(400).json({message: "ログイン失敗：パスワードが間違っています"}) 
             }
         }else{
-            return res.status(400).json({message: "ログイン失敗：ユーザーを登録してください"})
+            // ユーザーデータが存在しない場合の処理
+            return res.status(400).json({message: "ログイン失敗：ユーザー登録をしてください"})
         }
-        
     }catch(err){
-        //console.log(err)
-        return res.status(400).json({message: "ログイン失敗"})
-
+        return res.status(400).json({message: "ログイン失敗"}) 
     }
-
 }
 
 export default loginUser
