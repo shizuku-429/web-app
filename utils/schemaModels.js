@@ -22,7 +22,12 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true
-    }    
+    },
+    department: {
+        type: String,
+        required: true
+    }
+
 })
 
 export const WhereAboutModel = mongoose.models.Where || mongoose.model("Where", WhereAboutSchema)

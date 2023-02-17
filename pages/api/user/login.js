@@ -22,8 +22,8 @@ const loginUser = async(req, res) => {
                 }
 
                 const token = jwt.sign(payload, secret_key, {expiresIn: "23h"})
-                console.log(token)
-                return res.status(200).json({message: "ログイン成功", token: token})
+                
+                return res.status(201).json({message: "ログイン成功", token: token})
             }else{
                 // パスワードが間違っている場合の処理
                 return res.status(400).json({message: "ログイン失敗：パスワードが間違っています"}) 
