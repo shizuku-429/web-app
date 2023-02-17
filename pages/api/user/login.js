@@ -33,7 +33,7 @@ const loginUser = async(req, res) => {
             return res.status(400).json({message: "ログイン失敗：ユーザー登録をしてください"})
         }
     }catch(err){
-        return res.status(400).json({message: "ログイン失敗"}) 
+        return res.status(400).json({message: "ログイン失敗1"}) 
     }
 }
 

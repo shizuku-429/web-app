@@ -8,9 +8,10 @@ const Header = () => {
             <nav>
                 <ul>
                     <li><Link href="/">HOME</Link></li>
+                    <li><Link href="/whereabout/update/63eedf630a23fe7ab64dc504">個人ページ</Link></li>
                     <li><Link href="/user/register">登録</Link></li>
                     <li><Link href="/user/login">ログイン</Link></li>
-                    <li><Link href="/item/create">個人ページ</Link></li>
+                    
                 </ul>
             </nav>
         </header>

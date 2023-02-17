@@ -32,8 +32,8 @@ const Login = () =>{
             })
 
             const jsonData = await response.json()
-
-            localStorage.setItem("token",jsonData.token)
+            //await localStorage.setItem("token",jsonData.token)
+            console.log(localStorage)
             alert(jsonData.message)
             if(jsonData.token){
                 router.push("/")

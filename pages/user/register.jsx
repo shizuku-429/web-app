@@ -37,7 +37,7 @@ const Register = () =>{
 
             const jsonData = await response.json()
             router.push("./login")
-            //alert(jsonData.message)
+            alert(jsonData.message)
 
         }catch(err){
             //console.log(err)
