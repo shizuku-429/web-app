@@ -1,6 +1,9 @@
+//pages/api/whereabouts/readall.js
+
+/* 全所在データの取得 */
+
 import connectDB from "../../../utils/database"
 import { WhereAboutModel } from "../../../utils/schemaModels"
-import auth from "../../../utils/auth"
 
 const getAllWhereAbouts = async(req, res) => {
     try{

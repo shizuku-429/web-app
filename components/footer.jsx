@@ -1,3 +1,7 @@
+//componemts/footer
+
+/* フッター */
+
 const Footer = () => {
     return (
         <footer>

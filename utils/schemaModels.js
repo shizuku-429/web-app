@@ -3,10 +3,25 @@ import mongoose from "mongoose"
 const Schema = mongoose.Schema
 
 const WhereAboutSchema = new Schema({
-    name: String,        
-    image: String,    
-    where: String,
-    email: String
+    name: {
+        type: String, 
+        required: true
+    },       
+    image: {
+        type: String
+    },    
+    where: {
+        type: String
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    department: {
+        type: String,
+        required: true
+    }
 })
 
 const UserSchema = new Schema({
@@ -20,10 +35,6 @@ const UserSchema = new Schema({
         unique: true
     },
     password: {
-        type: String,
-        required: true
-    },
-    department: {
         type: String,
         required: true
     }

@@ -3,20 +3,18 @@
 /*　ユーザー登録画面 */
 
 import { useState } from "react"
-//import useForm from 'react-hook-form'
 import { useRouter } from "next/router"
+import  Head  from "next/head"
 
 const Register = () =>{
 
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [department, setDepartment] = useState("")
 
-    //const {register, formState: { errors } } = useForm();
-    //const errors = useForm;
     const router = useRouter();
     
+    //ボタン押下でユーザー情報を送信
     const handleSubmit = async(e) =>{
 
         e.preventDefault()
@@ -30,8 +28,7 @@ const Register = () =>{
                 body:JSON.stringify({
                     name:name,
                     email:email,
-                    password:password,
-                    department:department
+                    password:password
                 })
             })
 
@@ -40,14 +37,14 @@ const Register = () =>{
             alert(jsonData.message)
 
         }catch(err){
-            //console.log(err)
             alert("ユーザー登録失敗")
         }
     }
 
     return (
         <>
-            <h1>ユーザー登録</h1>  
+            <Head><title>ユーザー登録</title></Head>
+            <h1 h1 className="page-title">ユーザー登録</h1>  
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">氏名</label>
                     <input value={name} onChange={ (e)=>{setName(e.target.value) }} 
@@ -58,15 +55,6 @@ const Register = () =>{
                 <label htmlFor="password">パスワード</label>  
                     <input value={password} onChange={ (e)=>{setPassword(e.target.value) }}
                         type="text" name="password" placeholder="パスワードを入力" required/>
-
-
-                <label htmlFor='department'>所属部署</label>
-                    <select value={department} onChange={(e) => {setDepartment(e.target.value)}} name='department'>
-                    <option value='' hidden>所属部署を選択</option>
-                    <option value='dep1'>部署1</option>
-                    <option value='dep2'>部署2</option>
-                    <option value='dep3'>部署3</option>
-                    </select>
                         
                 <button>登録</button>    
             </form> 

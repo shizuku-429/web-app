@@ -3,6 +3,7 @@
 /* ログイン画面 */
 
 import { useRouter } from "next/router"
+import Head from "next/head"
 
 import { useState } from "react"
 
@@ -12,6 +13,8 @@ const Login = () =>{
     const [password, setPassword] = useState("")
     const router = useRouter();
 
+
+    // ボタン押下でユーザー情報を送信
     const handleSubmit = async(e) =>{
 
         e.preventDefault()
@@ -32,7 +35,7 @@ const Login = () =>{
             })
 
             const jsonData = await response.json()
-            //await localStorage.setItem("token",jsonData.token)
+            await localStorage.setItem("token",jsonData.token)
             console.log(localStorage)
             alert(jsonData.message)
             if(jsonData.token){
@@ -45,10 +48,13 @@ const Login = () =>{
 
     return (
         <>
-            <h1>ログイン</h1>
+            <Head><title>ログイン</title></Head>
+            <h1 className="page-title">ログイン</h1>
             <form onSubmit={handleSubmit}>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" name="email" placeholder="メールアドレス" required/>
-                <input value={password} onChange={(e) => setPassword(e.target.value)} type="text" name="password" placeholder="パスワード" required/>
+                <label htmlFor="email">メールアドレス</label>
+                <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" name="email" placeholder="メールアドレスを入力" required/>
+                <label htmlFor="password">パスワード</label>
+                <input value={password} onChange={(e) => setPassword(e.target.value)} type="text" name="password" placeholder="パスワードを入力" required/>
                 <button>ログイン</button>
             </form>
         </>

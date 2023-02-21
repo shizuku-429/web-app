@@ -1,3 +1,8 @@
+//pages/api/whereabouts/create.js
+
+/* 表示データの変更 */
+
+
 import auth from "../../../utils/auth"
 import connectDB from "../../../utils/database"
 import { WhereAboutModel } from "../../../utils/schemaModels"

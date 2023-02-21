@@ -1,3 +1,8 @@
+/*  
+    カスタムフック
+    ログイン状態を調べて、表示ページの制限をかける
+*/
+
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import jwt from "jsonwebtoken"
@@ -13,7 +18,7 @@ const useAuth = () => {
         const token = localStorage.getItem("token")
         
         if(!token){
-            router.push("/user/login") 
+            //router.push("/user/login") 
         }
     
         try{

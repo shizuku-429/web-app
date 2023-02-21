@@ -13,9 +13,9 @@ const loginUser = async(req, res) => {
         await connectDB()
         const savedUserData = await UserModel.findOne({email: req.body.email})
         if(savedUserData){
-            // ユーザーデータが存在する場合の処理
+            // ユーザーデータが存在する場合
             if(req.body.password === savedUserData.password){
-                // パスワードが正しい場合の処理
+                // パスワードが正しい場合
 
                 const payload = {
                     email: req.body.email,
@@ -25,15 +25,15 @@ const loginUser = async(req, res) => {
                 
                 return res.status(201).json({message: "ログイン成功", token: token})
             }else{
-                // パスワードが間違っている場合の処理
+                // パスワードが間違っている場合
                 return res.status(400).json({message: "ログイン失敗：パスワードが間違っています"}) 
             }
         }else{
-            // ユーザーデータが存在しない場合の処理
+            // ユーザーデータが存在しない場合
             return res.status(400).json({message: "ログイン失敗：ユーザー登録をしてください"})
         }
     }catch(err){
-        return res.status(400).json({message: "ログイン失敗1"}) 
+        return res.status(400).json({message: "ログイン失敗"}) 
     }
 }
 
